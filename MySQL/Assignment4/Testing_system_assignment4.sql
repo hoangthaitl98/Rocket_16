@@ -20,7 +20,7 @@ WHERE P.PositionID = 4;
 -- 4 -- 
 SELECT D.*, COUNT(A.AccountId) AS 'so nhan vien'
 FROM `account` A
-RIGHT JOIN `department` AS D ON A.DepartmentID = D.DepartmentId 
+INNER JOIN `department` AS D ON A.DepartmentID = D.DepartmentId 
 GROUP BY A.DepartmentId
 HAVING `so nhan vien` > 3;
 
@@ -30,7 +30,7 @@ FROM examquestion as EQ
 JOIN exam as E ON E.ExamID = EQ.ExamID
 Group by EQ.QuestionID
 having count(EQ.QuestionID) = (SELECT MAX(`TEMP`.countQuestion)
-								FROM (SELECT count(QuestionID) as countQuestion
+								FROM (SELECT count(QuestionID)  countQuestion
 										FROM examquestion
 										group by QuestionID) as `TEMP`);
 
