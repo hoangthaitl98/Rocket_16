@@ -1,14 +1,14 @@
 package TestingSystem;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Group {
     int groupID;
     String groupName;
     int creatorID;
-    String createDate;
+    LocalDate createDate;
 
-    public Group(int groupID, String groupName, int creatorID, String createDate) {
+    public Group(int groupID, String groupName, int creatorID, LocalDate createDate) {
         this.groupID = groupID;
         this.groupName = groupName;
         this.creatorID = creatorID;

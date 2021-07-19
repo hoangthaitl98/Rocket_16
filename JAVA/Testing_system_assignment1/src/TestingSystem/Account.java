@@ -1,5 +1,7 @@
 package TestingSystem;
 
+import java.time.LocalDate;
+
 public class Account {
     int accountID;
     String email;
@@ -7,9 +9,9 @@ public class Account {
     String fullname;
     int departmentID;
     int positionID;
-    String createDate;
+    LocalDate createDate;
 
-    public Account(int accountID, String email, String username, String fullname, int departmentID, int positionID, String createDate) {
+    public Account(int accountID, String email, String username, String fullname, int departmentID, int positionID, LocalDate createDate) {
         this.accountID = accountID;
         this.email = email;
         this.username = username;

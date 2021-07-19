@@ -1,6 +1,6 @@
 package TestingSystem;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Question {
     int questionID;
@@ -8,9 +8,9 @@ public class Question {
     int categoryID;
     int typeID;
     int creatorID;
-    String createDate;
+    LocalDate createDate;
 
-    public Question(int questionID, String content, int categoryID, int typeID, int creatorID, String createDate) {
+    public Question(int questionID, String content, int categoryID, int typeID, int creatorID, LocalDate createDate) {
         this.questionID = questionID;
         this.content = content;
         this.categoryID = categoryID;

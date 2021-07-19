@@ -1,13 +1,14 @@
 package TestingSystem;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class GroupAccount {
     int groupID;
     int accountID;
-    String joinDate;
+    LocalDate joinDate;
 
-    public GroupAccount(int groupID, int accountID, String joinDate) {
+    public GroupAccount(int groupID, int accountID, LocalDate joinDate) {
         this.groupID = groupID;
         this.accountID = accountID;
         this.joinDate = joinDate;

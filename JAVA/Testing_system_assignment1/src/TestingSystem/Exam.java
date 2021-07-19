@@ -1,5 +1,6 @@
 package TestingSystem;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Exam {
@@ -9,9 +10,9 @@ public class Exam {
     int categoryID;
     int duration;
     int creatorID;
-    String createDate;
+    LocalDate createDate;
 
-    public Exam(int examID, String code, String title, int categoryID, int duration, int creatorID, String createDate) {
+    public Exam(int examID, String code, String title, int categoryID, int duration, int creatorID, LocalDate createDate) {
         this.examID = examID;
         this.code = code;
         this.title = title;
