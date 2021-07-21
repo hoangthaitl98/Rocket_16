@@ -11,7 +11,12 @@ public class Exercise4 {
         //quesiton4();
         //question5();
         //question6();
-        question7();
+        //question7();
+        //question8();
+        //question9();
+        //question10();
+        //question11();
+        question12();
     }
 
     public static void question1() {
@@ -98,5 +103,60 @@ public class Exercise4 {
             }
         }
         System.out.println("Ho va ten: " + temp);
+    }
+
+    public static void question8() {
+        String[] groupName = {"SQL", "JAVA Core", "JAVA spring"};
+        for (int i = 0; i < groupName.length; i++) {
+            if (groupName[i].contains("JAVA"))
+                System.out.println(groupName[i]);
+        }
+    }
+
+    public static void question9() {
+        String[] groupName = {"SQL", "JAVA Core", "JAVA spring"};
+        for (int i = 0; i < groupName.length; i++) {
+            if (groupName[i].equals("JAVA"))
+                System.out.println(groupName[i]);
+        }
+    }
+
+    public static void question10() {
+        int check = 0;
+        String chuoi1 = "word", chuoi2 = "drow";
+        if (chuoi1.length() == chuoi2.length()) {
+            for (int i = 0; i < chuoi1.length(); i++) {
+                if (chuoi1.charAt(i) != chuoi2.charAt(chuoi2.length() - i - 1)) {
+                    check++;
+                }
+            }
+            if (check == 0)
+                System.out.println("OK");
+            else
+                System.out.println("KO");
+        } else {
+            System.out.println("KO");
+        }
+    }
+
+    public static void question11() {
+        String temp = "tai sao bai tap nhieu the";
+        int count = 0;
+        for (int i = 0; i < temp.length(); i++) {
+            if (temp.charAt(i) == 'a'){
+                count++;
+            }
+        }
+        System.out.println("so lan xuat hien ki tu a: " + count);
+    }
+
+    public static void question12() {
+        String xuoi = "abcd";
+        String nguoc = "";
+        char temp;
+        for (int i = xuoi.length() -1; i >= 0; i--){
+            nguoc += xuoi.charAt(i);
+        }
+        System.out.println(nguoc);
     }
 }
