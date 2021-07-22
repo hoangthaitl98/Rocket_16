@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Exercise5 {
     public static void main(String[] args) {
         Department[] departments = new Department[5];
-        for (int i = 0 ; i < 5; i++){
+        for (int i = 0; i < 5; i++) {
             departments[i] = new Department();
         }
         departments[0].name = "Phong e";
@@ -31,24 +31,23 @@ public class Exercise5 {
     }
 
     public static void question2(Department[] department) {
-        for (int i = 0; i < department.length; i++){
+        for (int i = 0; i < department.length; i++) {
             System.out.println(department[i].toString());
         }
     }
 
-    public static void question3(Department[] department){
+    public static void question3(Department[] department) {
         System.out.println(department[0].hashCode());
     }
 
-    public static void question4(Department[] department){
-        if (department[0].name == "Phong A"){
+    public static void question4(Department[] department) {
+        if (department[0].name == "Phong A") {
             System.out.println("Day la phong A");
-        }
-        else
+        } else
             System.out.println("Day thi deo");
     }
 
-    public static void question5(Department[] department){
+    public static void question5(Department[] department) {
         int check = department[0].compareTo(department[1]);
         if (check == 1)
             System.out.println("2 phong bang nhau");
@@ -56,23 +55,23 @@ public class Exercise5 {
             System.out.println("2 phong ko bang nhau");
     }
 
-    public static void question6(Department[]  department){
+    public static void question6(Department[] department) {
         //sort
-        for (int i = 0; i < department.length; i++){
-            for (int j = 0; j <department.length - 1; j++){
-                if (department[i].name.compareToIgnoreCase(department[j].name) < 0){
+        for (int i = 0; i < department.length; i++) {
+            for (int j = 0; j < department.length - 1; j++) {
+                if (department[i].name.compareToIgnoreCase(department[j].name) < 0) {
                     Department temp = department[i];
                     department[i] = department[j];
                     department[j] = temp;
                 }
             }
         }
-        for (int i = 0; i < department.length; i++){
+        for (int i = 0; i < department.length; i++) {
             System.out.println(department[i].name);
         }
     }
 
-    public static void question7(Department[] departments){
+    public static void question7(Department[] departments) {
 
     }
 }
