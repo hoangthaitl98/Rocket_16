@@ -1,7 +1,5 @@
 package com.vti.backend;
 
-import com.vti.entity.News;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 

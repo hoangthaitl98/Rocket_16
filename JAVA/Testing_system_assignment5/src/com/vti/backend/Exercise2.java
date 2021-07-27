@@ -1,7 +1,5 @@
 package com.vti.backend;
 
-import com.vti.entity.Student;
-
 public class Exercise2 {
     public void question1() {
         Student[] students = new Student[10];

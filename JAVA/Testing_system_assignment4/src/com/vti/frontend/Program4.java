@@ -1,7 +1,5 @@
 package com.vti.frontend;
 
-import com.vti.entity.Student;
-
 import java.util.Scanner;
 
 public class Program4 {

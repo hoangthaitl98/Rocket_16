@@ -1,7 +1,5 @@
 package com.vti.frontend;
 
-import com.vti.entity.HinhVuong;
-
 public class MySquare {
     public static void main(String[] args) {
         HinhVuong hinhVuong = new HinhVuong(10);
