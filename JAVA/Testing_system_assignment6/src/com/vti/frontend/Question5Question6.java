@@ -18,10 +18,11 @@ public class Question5Question6 {
                 if (Integer.parseInt(age) < 0){
                     System.out.println("Wrong inputing! The age must be greater than 0, please input again.");
                 }
-                stop++;
+                else stop++;
             }catch (Exception e){
                 System.out.println("wrong inputing! Please input an age as int, input again.");
             }
         }while (stop == 0);
     }
+
 }

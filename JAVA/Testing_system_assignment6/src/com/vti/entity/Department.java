@@ -1,15 +1,22 @@
 package com.vti.entity;
 
+import com.vti.backend.ScannerUtils;
+
 public class Department{
     private int id;
     private String name;
 
     public Department(int id, String name) {
+        super();
         this.id = id;
         this.name = name;
     }
 
     public Department() {
+        System.out.print("Input id: ");
+        this.id = ScannerUtils.inputInt();
+        System.out.print("Input name: ");
+        this.name = ScannerUtils.inputString();
     }
 
     public int getId() {
