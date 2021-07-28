@@ -15,7 +15,7 @@ public class Question7 {
             System.out.print("Nhap error message: ");
             String error = input.nextLine();
             try{
-                
+
             }
         }while (stop == 0);
     }
