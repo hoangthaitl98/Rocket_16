@@ -1,6 +1,6 @@
 package com.vti.frontend;
 
-public class Program1 {
+public class Question1Question2 {
     public static void main(String[] args) {
         try {
             float result = divide(7,1);

@@ -1,6 +1,6 @@
 package com.vti.frontend;
 
-public class Program2 {
+public class Question3 {
     public static void main(String[] args) {
         int [] numbers = {1, 2, 3};
         try {
