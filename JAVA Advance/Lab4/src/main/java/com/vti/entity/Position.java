@@ -1,5 +1,6 @@
 package com.vti.entity;
 
+import com.vti.entity.Enum.PositionName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,10 +24,6 @@ public class Position implements Serializable {
     @Column(name = "PositionName", nullable = false, unique = true)
     @Enumerated(EnumType.STRING)
     private PositionName positionName;
-
-    public enum PositionName{
-        Dev, Test, Master, PM;
-    }
 
     @OneToMany(mappedBy = "position")
     List<Account> accounts;
