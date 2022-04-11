@@ -24,5 +24,6 @@ public class Department implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
+    @Cascade(value = {org.hibernate.annotations.CascadeType.REMOVE, org.hibernate.annotations.CascadeType.SAVE_UPDATE})
     private List<Account> account;
 }

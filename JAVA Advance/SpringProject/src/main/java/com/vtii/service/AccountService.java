@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 
 import com.vtii.entity.Account;
 import com.vtii.repository.IAccountRepository;
+import org.springframework.util.StringUtils;
 
 @Service
 public class AccountService implements IAccountService{
@@ -48,12 +49,16 @@ public class AccountService implements IAccountService{
 	@Override
 	public Page<Account> getAllAccount(Pageable pageable, String search) {
 		Specification<Account> where = null;
-		AccountSpecification nameSpecification = new AccountSpecification("fullname", "LIKE", search);
-		AccountSpecification emailSpecification = new AccountSpecification("email", "LIKE", search);
-		AccountSpecification departmentSpecification = new AccountSpecification("department.name", "LIKE", search);
-		where = Specification.where(nameSpecification).or(emailSpecification).or(departmentSpecification);
-		// TODO Auto-generated method stub
+
+		if (!StringUtils.isEmpty(search)) {
+			AccountSpecification nameSpecification = new AccountSpecification("fullname", "LIKE", search);
+			AccountSpecification emailSpecification = new AccountSpecification("email", "LIKE", search);
+			AccountSpecification departmentSpecification = new AccountSpecification("department.name", "LIKE", search);
+			where = Specification.where(nameSpecification).or(emailSpecification).or(departmentSpecification);
+		}
+
 		return accountRepository.findAll(where, pageable);
+
 	}
 
 	@Override

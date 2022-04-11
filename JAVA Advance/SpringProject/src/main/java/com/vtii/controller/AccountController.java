@@ -26,7 +26,7 @@ public class AccountController {
 	
 	@GetMapping
 	public ResponseEntity<?> getAllAccount(Pageable pageable, @RequestParam(required = false) String search) {
-		Page<Account> accounts = accountService.getAllAccount(pageable, search);
+
 		/*List<AccountDto> accountDtos = new ArrayList<>();
 		//convert entities to dto
 		for(Account account : accounts) {
@@ -35,7 +35,11 @@ public class AccountController {
 					account.getPosition().getPositionName().toString(), account.getCreateDate());
 			accountDtos.add(dto);
 		}*/
-		Page<AccountDto> dtoPage = accounts.map(new Function<Account, AccountDto>() {
+		Page<Account> entities = accountService.getAllAccount(pageable, search);
+
+		// convert entities --> dtos
+		// https://stackoverflow.com/questions/39036771/how-to-map-pageobjectentity-to-pageobjectdto-in-spring-data-rest
+		Page<AccountDto> dtoPage = entities.map(new Function<Account, AccountDto>() {
 			@Override
 			public AccountDto apply(Account account) {
 				AccountDto dto = new AccountDto(account.getId(), account.getEmail(), account.getUsername(),
@@ -44,7 +48,9 @@ public class AccountController {
 				return dto;
 			}
 		});
+
 		return new ResponseEntity<>(dtoPage, HttpStatus.OK);
+
 	}
 
 	@GetMapping(value = "/{id}")
