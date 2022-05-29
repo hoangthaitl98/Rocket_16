@@ -35,7 +35,6 @@ public class Account implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "DepartmentID", nullable = false)
-    @Cascade(value = { org.hibernate.annotations.CascadeType.REMOVE, org.hibernate.annotations.CascadeType.SAVE_UPDATE })
     private Department department;
 
     @ManyToOne

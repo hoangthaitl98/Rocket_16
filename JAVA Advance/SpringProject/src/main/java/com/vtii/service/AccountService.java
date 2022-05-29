@@ -47,17 +47,8 @@ public class AccountService implements IAccountService{
 	private PasswordEncoder passwordEncoder;
 
 	@Override
-	public Page<Account> getAllAccount(Pageable pageable, String search) {
-		Specification<Account> where = null;
-
-		if (!StringUtils.isEmpty(search)) {
-			AccountSpecification nameSpecification = new AccountSpecification("fullname", "LIKE", search);
-			AccountSpecification emailSpecification = new AccountSpecification("email", "LIKE", search);
-			AccountSpecification departmentSpecification = new AccountSpecification("department.name", "LIKE", search);
-			where = Specification.where(nameSpecification).or(emailSpecification).or(departmentSpecification);
-		}
-
-		return accountRepository.findAll(where, pageable);
+	public List<Account> getAllAccount() {
+		return accountRepository.findAll();
 
 	}
 

@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 
 public interface IAccountService extends UserDetailsService {
-	public Page<Account> getAllAccount(Pageable pageable, String search);
+	public List<Account> getAllAccount();
 
 	public Account getAccountById(short id);
 
