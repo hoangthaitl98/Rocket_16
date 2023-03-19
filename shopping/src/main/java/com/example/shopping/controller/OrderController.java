@@ -1,7 +1,8 @@
 package com.example.shopping.controller;
 
+import com.example.shopping.body.OrderBody;
 import com.example.shopping.entity.Order;
-import com.example.shopping.service.IOrderService;
+import com.example.shopping.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/v1/order")
+@RequestMapping("api/v2/order")
 @CrossOrigin("*")
 public class OrderController {
     @Autowired
-    private IOrderService orderService;
+    private OrderService orderService;
 
     @GetMapping
     public ResponseEntity<?> getAllOrder() {
@@ -23,8 +24,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addOrder(@RequestBody Order order) {
-        orderService.addOrder(order);
+    public ResponseEntity<?> addOrder(@RequestBody OrderBody orderBody) {
+        orderService.addOrder(orderBody);
         return new ResponseEntity<String>("Success", HttpStatus.CREATED);
     }
 }

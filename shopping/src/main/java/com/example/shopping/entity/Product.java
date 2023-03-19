@@ -5,28 +5,32 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name="`product`", catalog = "shopping")
-@Getter@Setter
+@Table(name = "product", catalog = "shopping")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-    private static final long serialVersionUID  = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int productId;
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
 
-    @Column(name = "name", length = 50)
-    private String productName;
+    @Column(name = "name", length = 50, nullable = false)
+    private String name;
 
-    @Column(name = "imgLink", length = 255)
-    private String imgLink;
+    @Column(name = "description")
+    private String description;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "productId")
+    private List<Image> images;
 
     @Column(name = "price")
     private int price;
