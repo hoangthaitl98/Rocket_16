@@ -1,10 +1,8 @@
 package com.example.shopping.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,6 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class Product {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -28,18 +27,31 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "productId")
-    private List<Image> images;
+    @Column(name = "slug")
+    private String slug;
 
     @Column(name = "price")
     private int price;
+
+    @Column(name = "avgRate", nullable = true)
+    private Double averageRate;
+
+    @OneToMany(mappedBy = "product")
+    private List<Image> images;
 
     @ManyToOne
     @JoinColumn(name = "categoryId")
     private Category category;
 
+    @OneToMany(mappedBy = "product")
+    @JsonBackReference
+    private List<OrderProduct> orderProducts;
+
+    @OneToMany(mappedBy = "product")
+    @JsonBackReference
+    private List<CartItem> cartItems;
+
+    @OneToMany(mappedBy = "product")
     @JsonIgnore
-    @ManyToMany(mappedBy = "products")
-    private List<Order> orders;
+    private List<Comment> comments;
 }

@@ -1,8 +1,8 @@
 package com.example.shopping.controller;
 
-import com.example.shopping.body.ProductBody;
+import com.example.shopping.dto.ProductDto;
 import com.example.shopping.entity.Product;
-import com.example.shopping.service.IProductService;
+import com.example.shopping.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,19 +16,21 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class ProductController {
     @Autowired
-    private IProductService productService;
+    private ProductService productService;
 
     @GetMapping
     @ApiOperation(value = "get all product")
-    public ResponseEntity<?> getAllProduct(Pageable pageable, @RequestParam(required = false, defaultValue = "0") int page, @RequestParam(required = false, defaultValue = "3") int size) {
+    public ResponseEntity<?> getAllProduct(Pageable pageable,
+                                           @RequestParam(required = false, defaultValue = "0") int page,
+                                           @RequestParam(required = false, defaultValue = "3") int size) {
         Page<Product> products = productService.getAllProduct(pageable);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @PostMapping("/")
     @ApiOperation(value = "add new product")
-    public ResponseEntity<?> addProduct(@RequestBody ProductBody productBody) {
-        Product product = productService.addProduct(productBody);
+    public ResponseEntity<?> addProduct(@RequestBody ProductDto productDto) {
+        Product product = productService.addProduct(productDto);
         return new ResponseEntity<>(product.getId(), HttpStatus.OK);
     }
 
@@ -49,5 +51,12 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable String id) {
         return new ResponseEntity<>(productService.getById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/getByCategory/{categoryId}")
+    public ResponseEntity<?> getByCategory(@PathVariable int categoryId, Pageable pageable,
+                                           @RequestParam(required = false, defaultValue = "0") int page,
+                                           @RequestParam(required = false, defaultValue = "3") int size) {
+        return new ResponseEntity<>(productService.getProductByCategory(categoryId, pageable), HttpStatus.OK);
     }
 }

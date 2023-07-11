@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class ImageUtils {
+
     public boolean isFileOrFolderExist(String path) throws IOException{
         return new File(path).exists();
     }

@@ -1,12 +1,18 @@
 package com.example.shopping.service;
 
-import com.example.shopping.body.OrderBody;
+import com.example.shopping.dto.OrderDto;
 import com.example.shopping.entity.Order;
 
 import java.util.List;
 
 public interface OrderService {
-    public List<Order> getAllOrder();
+    List<Order> getAllOrder();
 
-    public void addOrder(OrderBody orderBody);
+    void addOrder(OrderDto orderDto);
+
+    Order updateOrder(int id, OrderDto orderDto);
+
+    Order updateStatus(int id, String statusValue);
+
+    List<Order> getByUser(String userId);
 }

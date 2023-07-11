@@ -8,9 +8,11 @@ import com.example.shopping.entity.Image;
 import com.example.shopping.entity.Product;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 public interface ImageService {
-    void uploadImage(MultipartFile[] image, String productId) throws IOException;
+    void uploadImage(MultipartFile[] image, String productId, HttpServletRequest request) throws IOException;
 
     File dowwnloadImage(String nameImage) throws IOException;
 

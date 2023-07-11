@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class ResourceWebConfig implements WebMvcConfigurer {
-    final Environment environment;
+    public final Environment environment;
 
     public ResourceWebConfig(Environment environment) {
         this.environment = environment;
@@ -15,7 +15,7 @@ public class ResourceWebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        String location = environment.getProperty("app.file.storage.mapping");
-        registry.addResourceHandler("/upload/**").addResourceLocations(location);
+        String path = environment.getProperty("app.file.storage.mapping");
+        registry.addResourceHandler("/upload/**").addResourceLocations(path);
     }
 }

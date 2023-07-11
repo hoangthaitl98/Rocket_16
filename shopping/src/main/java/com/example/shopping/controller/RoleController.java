@@ -5,6 +5,7 @@ import com.example.shopping.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,19 +18,20 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping
-    public ResponseEntity<?> getAllRole(){
+    public ResponseEntity<?> getAllRole(@RequestHeader(name = "Authorization", defaultValue = "Bearer ", required = false) String token) {
         List<Role> roles = roleService.getAllRoles();
         return new ResponseEntity<>(roles, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<?> createRole(@RequestBody String name){
+    public ResponseEntity<?> createRole(@RequestHeader(name = "Authorization", defaultValue = "Bearer ", required = false) String token, @RequestBody String name) {
         roleService.createRole(name);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteRole(@PathVariable Long id){
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> deleteRole(@RequestHeader(name = "Authorization", defaultValue = "Bearer ", required = false) String token, @PathVariable Long id) {
         roleService.deleteRole(id);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }

@@ -1,5 +1,6 @@
 package com.example.shopping.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,8 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Getter@Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "image")
@@ -31,7 +33,8 @@ public class Image {
     @Column
     private long size;
 
-//    @ManyToOne
-//    @JoinColumn(name = "productId")
-//    private Product product ;
+    @ManyToOne
+    @JoinColumn(name = "productId")
+    @JsonBackReference
+    private Product product;
 }

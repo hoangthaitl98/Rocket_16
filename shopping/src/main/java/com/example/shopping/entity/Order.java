@@ -1,22 +1,21 @@
 package com.example.shopping.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "order", catalog = "shopping")
-@Getter@Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order implements Serializable {
-    private static final long serialVersionUID  = 1L;
+@EqualsAndHashCode
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -39,11 +38,15 @@ public class Order implements Serializable {
     @CreationTimestamp
     private Date orderDate;
 
-    @ManyToMany
-    @JoinTable(
-            name = "orderDetail",
-            joinColumns = @JoinColumn(name = "orderId"),
-            inverseJoinColumns = @JoinColumn(name = "productId")
-    )
-    private List<Product> products;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderProduct> orderProducts;
+
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private OrderStatus status;
 }

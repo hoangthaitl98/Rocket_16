@@ -5,5 +5,13 @@ import com.example.shopping.entity.Category;
 import java.util.List;
 
 public interface CategoryService {
-    public List<Category> getAllCategory();
+    List<Category> getAllCategory();
+
+    Category getSingleCategory(int id);
+
+    Category addCategory(String name);
+
+    Category updateCategory(int id, String name);
+
+    void deleteCategory(int id);
 }

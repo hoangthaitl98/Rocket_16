@@ -1,20 +1,21 @@
 package com.example.shopping.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "category", catalog = "shopping")
-@Getter@Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category implements Serializable {
-    private static final long serialVersionUID  = 1L;
+public class Category {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +23,11 @@ public class Category implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "slug")
+    private String slug;
+
+    @OneToMany(mappedBy = "category")
+    @JsonBackReference
+    private List<Product> products;
 }

@@ -17,13 +17,13 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<?> createUser(@RequestBody User user){
+    public ResponseEntity<?> createUser(@RequestHeader(name = "Authorization", defaultValue = "Bearer ") String token, @RequestBody User user) {
         User createUser = userService.createUser(user);
         return new ResponseEntity<>(createUser, HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<?> getAllUser(){
+    public ResponseEntity<?> getAllUser(@RequestHeader(name = "Authorization", defaultValue = "Bearer ") String token) {
         List<User> users = userService.getAllUser();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }

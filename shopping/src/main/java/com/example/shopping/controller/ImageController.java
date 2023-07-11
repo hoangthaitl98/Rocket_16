@@ -17,8 +17,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 @RestController
-@RequestMapping(value = "/api/v2/image", produces = { "application/json" },
-        consumes = { "application/json" })
+@RequestMapping(value = "/api/v2/image", produces = {"application/json"},
+        consumes = {"application/json"})
 @CrossOrigin("*")
 public class ImageController {
     @Autowired
@@ -28,7 +28,7 @@ public class ImageController {
     @ApiOperation(value = "upload product's image")
     public ResponseEntity<?> upLoadImage(@RequestParam MultipartFile[] images, @PathVariable String productId, HttpServletRequest request) throws IOException {
         try {
-            imageService.uploadImage(images, productId);
+            imageService.uploadImage(images, productId, request);
             return new ResponseEntity<>("Success", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
